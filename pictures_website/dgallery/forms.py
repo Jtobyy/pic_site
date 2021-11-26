@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Image
 
 
 class RegForm(UserCreationForm):
@@ -16,3 +17,9 @@ class RegForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class ImageForm(forms.Form):
+    class Meta:
+        model = Image
+        fields = ("image", "caption")
+    

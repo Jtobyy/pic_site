@@ -3,11 +3,21 @@ from django.contrib import messages
 from django.contrib.messages.constants import ERROR, SUCCESS
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import RegForm
+from .forms import RegForm, ImageForm
 from django.contrib.auth import authenticate, login
-from django.contrib import messages
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from .models import Image
+from django.utils import timezone
 
+@login_required(login_url='/dgallery/login')
+def profile(request):
+    if request.method == 'POST':
+        image = request.POST['image']
+        caption = request.POST['caption']
+        img_ins = Image(image=image, caption=caption, date_added=timezone.now())
+        return HttpResponse("Image successfully added")
+    image_form = ImageForm()
+    return render(request, 'dgallery/profilepage.html', {'image_form': image_form})
 
 def login_view(request):
     if request.method == 'POST':
