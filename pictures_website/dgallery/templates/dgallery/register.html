@@ -11,10 +11,25 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <link rel="stylesheet" href="{% static 'dgallery/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/gen.css' %}">
         <link rel="stylesheet" href="{% static 'dgallery/css/bootstrap.min.css' %}">
-    </head>
+    </head> 
 	<body>
-	    <section class="ftco-section">
+        {% if "messages" %}	
+		<div class="messages">
+		<ul>
+			{% for message in messages %}
+			<li {% if message.tags %} class="alert {{message.tags}} alert-dismissible fade show" {% endif %} role="alert">
+				{{ message }}	
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+			</li>
+			{% endfor %}
+		</ul>
+        </div>
+		{% endif %}
+	<section class="ftco-section">
 		    <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center mb-5">

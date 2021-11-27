@@ -2,25 +2,39 @@
 {% load static %}
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Add Image</title>
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+        
 	    <link rel="stylesheet" href="{% static 'dgallery/css/imageform.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/gen.css' %}">
 	    <link rel="stylesheet" href="{% static 'dgallery/css/bootstrap.min.css' %}">
     </head>    
     <body>
+        {% if "messages" %}
+		<div class="messages">
+		<ul>
+			{% for message in messages %}
+			<li {% if message.tags %} class="alert {{message.tags}} alert-dismissible fade show" {% endif %} role="alert">
+				{{ message }}	
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+			</li>
+			{% endfor %}
+		</ul>
+        </div>
+		{% endif %}
     <div class="container">
-        <form method="post" action="{% url 'dgallery:imageform' %}" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'dgallery:imageform' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 {{  image_form.as_p }}   
-            </div>             
-            <input type="submit" class="form-control btn btn-outline-dark rounded submit px-3">
+            </div>   
+            <input type="submit" value="submit" class="form-control btn btn-outline-dark rounded submit px-3">
         </form>
     </div>    
-
     </body>
 </html>

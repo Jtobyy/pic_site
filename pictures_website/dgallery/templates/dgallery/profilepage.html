@@ -11,17 +11,30 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="{% static 'dgallery/css/profilepagestyle.css' %}">
+	<link rel="stylesheet" href="{% static 'dgallery/css/gen.css' %}">
 	<link rel="stylesheet" href="{% static 'dgallery/css/bootstrap.min.css' %}">
 </head>    
 <body>
+	{% if "messages" %}	
+		<div class="messages">
+		<ul>
+			{% for message in messages %}
+			<li {% if message.tags %} class="alert {{message.tags}} alert-dismissible fade show" {% endif %} role="alert">
+				{{ message }}	
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+			</li>
+			{% endfor %}
+		</ul>
+		</div>
+	{% endif %}
 <header>
-
 	<div class="container">
 
 		<div class="profile">
 
 			<div class="profile-image">
-
 				<img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
 
 			</div>
@@ -53,11 +66,15 @@
 			</div>
 		</div>
 		<!-- End of profile section -->
-<a href="{% url 'dgallery:imageform' %}">
-		<button class="btn add-image-btn">
-			Add Image
-		</button></a>
-
+			<a href="{% url 'dgallery:imageform' %}">
+			<button class="btn add-image-btn">
+				Add Image
+			</button></a>
+			<a href="{% url 'dgallery:logout' %}">
+				<button class="btn">
+					Sign out
+				</button></a>
+			
 	</div>
 	<!-- End of container -->
 

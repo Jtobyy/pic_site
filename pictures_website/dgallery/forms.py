@@ -21,4 +21,5 @@ class RegForm(UserCreationForm):
 class ImageForm(forms.Form):
     image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
     caption = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control '}))
+
     
