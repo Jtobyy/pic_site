@@ -19,7 +19,6 @@ class RegForm(UserCreationForm):
         return user
 
 class ImageForm(forms.Form):
-    class Meta:
-        model = Image
-        fields = ("image", "caption")
+    image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
+    caption = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control '}))
     
