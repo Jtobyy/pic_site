@@ -1,11 +1,15 @@
 .messages
 {
-  display: table;
-  width: 80%;
-  height: 10px;
-  opacity: 0.8;
-  margin:auto;
+  z-index: 3;
+  display: flex;
+  position: absolute;
+  width: 30em;
+  height: 3em;
+  left: 50%;
+  margin-left: -17em;
+  opacity: 0.98;
 }
+
 ul {
   display: table-row;
   text-align: center;
@@ -22,8 +26,8 @@ ul {
     background-color: gainsboro;
   }
   .success {
-    width: 100%;
-    height: 100%;
+    width: 30em;
+    height: 3em;
     background-color: rgba(144, 238, 144, 0.5);
   }
   .warning {

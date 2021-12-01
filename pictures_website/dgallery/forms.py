@@ -6,6 +6,7 @@ from .models import Image
 
 class RegForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    image = forms.ImageField(required=False)
 
     class Meta:
         model = User
@@ -21,5 +22,3 @@ class RegForm(UserCreationForm):
 class ImageForm(forms.Form):
     image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}))
     caption = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control '}))
-
-    

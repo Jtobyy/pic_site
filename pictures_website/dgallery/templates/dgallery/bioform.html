@@ -1,0 +1,31 @@
+{% extends 'dgallery/profilepage.html' %}
+{% load static %}
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            
+        <link rel="stylesheet" href="{% static 'dgallery/css/font/bootstrap-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/profilepagestyle.css' %}"> 
+        <link rel="stylesheet" href="{% static 'dgallery/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/gen.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/profilepopup.css' %}" >
+    </head>
+{% endblock %}
+{% block section %}
+    <form class="popup biopopup" method="POST" action="{%url 'dgallery:bio' %}" enctype="multipart/form-data">
+        {% csrf_token %}    
+        <div>
+            {%if caption.errors %}
+            {{ form.caption.errors }}
+            {% endif %}   
+            <label class="label" for="{{ form.caption.id_for_caption }}">Edit bio: </label>
+            <div class="textarea">{{ form.caption }}</div>
+        <input type="submit" value="submit" class="form-control btn btn-outline-dark rounded submit px-3">
+    </div>
+    <div role="button" class="close" aria-label="Close">
+        <a href="{% url 'dgallery:profile' %}">&times;</a>
+      </div>
+    </form>
+    
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'dgallery/profilepage.html' %}
+{% load static %}
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            
+        <link rel="stylesheet" href="{% static 'dgallery/css/font/bootstrap-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/profilepagestyle.css' %}"> 
+        <link rel="stylesheet" href="{% static 'dgallery/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/gen.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/profilepopup.css' %}" >
+    </head>
+{% endblock %}
+{% block section %}
+<section class="popup">
+    <form method="POST" action="{% url 'dgallery:profileimage' %}" enctype="multipart/form-data">
+        {% csrf_token %}    
+        <div class="form-group mb-3">
+            {{ form.image.errors }}        
+            <label class="label" for="{{ form.image.id_for_image }}">Choose Image:</label>
+            <div class="form-control">{{ form.image }}</div>
+        </div>
+        <input type="submit" value="submit" class="form-control btn btn-outline-dark rounded submit px-3">
+    </form>
+    <div role="button" class="close" aria-label="Close">
+        <a href="{% url 'dgallery:profile' %}">&times;</a>
+      </div>
+</section>
+{% endblock %}

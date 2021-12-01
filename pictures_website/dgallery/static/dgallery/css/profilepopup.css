@@ -1,0 +1,45 @@
+*
+{    
+    opacity: 0.9 !important;
+    transition: 2s;
+}
+body{
+    background-color: rgba(0, 0, 0, 0.7) !important;    
+    z-index: 1;
+}
+.popup {
+    position: absolute;
+    top: 25%;
+    left: 35%;    
+    z-index: 3 !important;
+    opacity: 1 !important;
+    background-color: wheat !important;
+    width: 30%;
+    height: 60%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+}
+
+form {
+    font-weight: 450;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.biopopup {
+    background-color: white !important;
+}
+
+.textarea {
+    text-align: center;    
+    width: 10em;
+}

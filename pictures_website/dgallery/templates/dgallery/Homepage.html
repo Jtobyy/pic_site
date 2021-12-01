@@ -3,7 +3,22 @@
 <html>
     <head>
         <title> Homepage </title>
-
-        <link rel='stylesheet'
+        <meta name="viewport" content="width=device-width initial-scale=1"
+        <link rel="stylesheet" href="{% static 'dgallery/css/homepage.css.css' %}"
     </head>
+    <body>
+        <header>
+        </header>
+        <main>
+            <div class="container">
+                <section>
+                    <div aria-labelledby="{{forloop.counter}}" class="caption"> {{ obj.caption }}</div>		    
+                </section>/sectionL>
+            </div>    
+            
+        </main>
+        <footer>
+
+        </footer>
+    </body>
 </html>
