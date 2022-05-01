@@ -3,22 +3,90 @@
 <html>
     <head>
         <title> Homepage </title>
-        <meta name="viewport" content="width=device-width initial-scale=1"
-        <link rel="stylesheet" href="{% static 'dgallery/css/homepage.css.css' %}"
+
+        <meta name="viewport" content="width=device-width initial-scale=1">
+
+        <link rel="stylesheet" href="{% static 'dgallery/css/font/bootstrap-icons.css' %}">        
+        <link rel="stylesheet" href="{% static 'dgallery/css/homepage.css' %}">
+        <link rel="stylesheet" href="{% static 'dgallery/css/gen.css' %}">
+    	<link rel="stylesheet" href="{% static 'dgallery/css/bootstrap.min.css' %}">
+        <link rel="icon" href="{% static 'dgallery/css/images/animation-cool.gif' %}">
     </head>
     <body>
-        <header>
-        </header>
-        <main>
-            <div class="container">
-                <section>
-                    <div aria-labelledby="{{forloop.counter}}" class="caption"> {{ obj.caption }}</div>		    
-                </section>/sectionL>
-            </div>    
-            
-        </main>
-        <footer>
-
-        </footer>
+    {% if "messages" %}	
+		<div class="messages">
+		<ul>
+			{% for message in messages %}
+			<li {% if message.tags %} class="alert {{message.tags}} alert-dismissible fade show" {% endif %} role="alert">
+				{{ message }}	
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+			</li>
+			{% endfor %}
+		</ul>
+		</div>
+	{% endif %}
+    <div class="page">
+    <header>
+        <div class="container">
+            <div class="logo" tabindex="0'">
+                <h1><a href="{% url 'dgallery:homepage' %}">d'gallery</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li title="home"><a href="{% url 'dgallery:homepage' %}"><i class="bi-house-door"></i></a></li>
+                    <li title="add post"><a href="{% url 'dgallery:imageform' %}"><i class="bi-plus-square-fill"></i></a></li>
+                    <li title="logout"><a href="{% url 'dgallery:profile' %}"><img src="{{ userprofile.profileimage.url }}">
+                    </a></li>
+                    
+                </ul>
+            </nav>
+        </div>	
+    </header>
+    <main>
+    <div class="grid">
+        <section class="grid-section">
+        {% for obj in image_objects %}
+        <div class="box">
+        <div class="profile">
+            {% for profile in profiles %}
+            <div class="profile-image"  tabindex="0">
+            {% if profile.user.id == obj.user.id %}    
+                <img src="{{ profile.profileimage.url }}">
+            {% endif %}
+            </div>
+            {% endfor %}
+            <div class="username">
+                <span> {{ obj.user }}</span>
+            </div>
+        </div>
+        <div class="grid-section-item">
+			<img class="grid-section-item" src="{{ obj.image.url }}" alt="obj.caption" >
+		</div>
+        <div aria-labelledby="{{forloop.counter}}" class="caption"> 
+            {{ obj.caption }}
+        </div>
+        </div>
+        {% endfor %}
+        </section>
+        <aside>
+            <div>
+                ...........ChatBox...
+                ...........TBC
+            </div>
+        </aside>
+    </div>    
+    </main>
+    <footer>
+        <div class="copyright" title="copyright">
+            <p>&copy; IG_clone</p>
+        </div>
+    </footer>
+    </div>
+    <script src="{% static 'dgallery/js/jquery.min.js' %}"></script>
+    <script src="{% static 'dgallery/js/popper.js' %}"></script>
+    <script src="{% static 'dgallery/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dgallery/js/main.js' %}"></script>
     </body>
 </html>
